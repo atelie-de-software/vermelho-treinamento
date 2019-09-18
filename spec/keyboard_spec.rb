@@ -4,6 +4,7 @@ RSpec.describe Keyboard do
   describe "method #read_input" do
     xit "return UP imputing arrow up" do
       allow_any_instance_of(Keyboard).to receive(:get_input).and_return('A')
+      expect(Keyboard.get_input).to eq('UP')
     end
 
     xit "return DOWN imputing arrow down" do
