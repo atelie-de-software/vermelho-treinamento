@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 loop do
   key = STDIN.getc if key = select([STDIN], [], [], 0.2) && STDIN.getc == "\e" && STDIN.getc == '['
+  system 'stty -icanon -echoke'
   case key
   when "A"
     puts 'UP ARROW'
