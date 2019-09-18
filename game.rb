@@ -1,15 +1,13 @@
-#!/usr/bin/env ruby
+require 'io/console'
+
 loop do
-  key = STDIN.getc if key = select([STDIN], [], [], 0.2) && STDIN.getc == "\e" && STDIN.getc == '['
   system 'stty -icanon -echoke'
-  case key
-  when "A"
-    puts 'UP ARROW'
-  when "B"
-    puts 'DOWN ARROW'
-  when "C"
-    puts 'RIGHT ARROW'
-  when "D"
-    puts 'LEFT ARROW'
-  end
+  STDIN.echo = false
+
+  key = STDIN.getc if key = select([STDIN], [], [], 0.2) && STDIN.getc == "\e" && STDIN.getc == '['
+
+  next puts 'UP' if key == 'A'
+  next puts 'DOWN' if key == 'B'
+  next puts 'RIGHT' if key == 'C'
+  next puts 'LEFT' if key == 'D'
 end
