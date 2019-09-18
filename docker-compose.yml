@@ -1,0 +1,11 @@
+version: '2'
+
+volumes:
+  gems-projeto-1:
+
+services:
+  projeto:
+    build: .
+    volumes:
+      - gems-projeto-1:/usr/local/bundle
+      - ./:/projeto
