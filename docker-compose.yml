@@ -9,3 +9,4 @@ services:
     volumes:
       - gems-projeto-1:/usr/local/bundle
       - ./:/projeto
+    command: bash -c "ruby main.rb"
