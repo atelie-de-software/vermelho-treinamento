@@ -2,18 +2,29 @@ require './classes/keyboard'
 
 RSpec.describe Keyboard do
   describe "method #read_input" do
-    xit "return UP imputing arrow up" do
+    it "return UP imputing arrow up" do
       allow_any_instance_of(Keyboard).to receive(:get_input).and_return('A')
-      expect(Keyboard.get_input).to eq('UP')
+      expect(Keyboard.new.read_input).to eq('UP')
     end
 
-    xit "return DOWN imputing arrow down" do
+    it "return DOWN imputing arrow down" do
+      allow_any_instance_of(Keyboard).to receive(:get_input).and_return('B')
+      expect(Keyboard.new.read_input).to eq('DOWN')
     end
 
-    xit "return left imputing arrow left" do
+    it "return left imputing arrow left" do
+      allow_any_instance_of(Keyboard).to receive(:get_input).and_return('C')
+      expect(Keyboard.new.read_input).to eq('RIGHT')
     end
 
-    xit "return right imputing arrow right" do
+    it "return right imputing arrow right" do
+      allow_any_instance_of(Keyboard).to receive(:get_input).and_return('D')
+      expect(Keyboard.new.read_input).to eq('LEFT')
+    end
+
+    it "return LETTER A imputing key A " do
+      allow_any_instance_of(Keyboard).to receive(:get_input).and_return('a')
+      expect(Keyboard.new.read_input).to eq('LETTER A')
     end
   end
 end

@@ -5,7 +5,7 @@ volumes:
 
 services:
   projeto:
-    build: ./
+    build: .
     volumes:
       - gems-projeto-1:/usr/local/bundle
-      - ./:/projeto_vazio
+      - ./:/projeto
