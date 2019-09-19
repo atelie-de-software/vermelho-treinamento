@@ -22,9 +22,9 @@ RSpec.describe Keyboard do
       expect(Keyboard.new.read_input).to eq('LEFT')
     end
 
-    it "return the key character imputing a letter key" do
+    it "return the key character imputing a letter key A" do
       allow_any_instance_of(Keyboard).to receive(:get_input).and_return('a')
-      expect(Keyboard.new.read_input).to eq('a')
+      expect(Keyboard.new.read_input).to eq('A')
     end
   end
 end
