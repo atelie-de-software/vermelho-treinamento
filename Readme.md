@@ -1,5 +1,6 @@
 # Projeto Exemplo
-## Como executar o projeto:
+### Rodar teste projeto:
+`docker-compose run projeto ruby main.rb`
 ### Build
 `docker-compose build projeto`
 ### Acesso
