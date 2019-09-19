@@ -1,8 +1,10 @@
-FROM ruby:latest
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
-RUN mkdir /projeto
+FROM ruby:2.7-rc
+
+RUN gem install bundle
+
 WORKDIR /projeto
 COPY Gemfile /projeto/Gemfile
 COPY Gemfile.lock /projeto/Gemfile.lock
+RUN bundle update --all
 RUN bundle install
-COPY . /projeto
+CMD ruby main.rb

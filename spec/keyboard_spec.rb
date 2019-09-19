@@ -1,4 +1,4 @@
-require './classes/keyboard'
+require './src/keyboard'
 
 RSpec.describe Keyboard do
   describe "method #read_input" do
@@ -22,9 +22,9 @@ RSpec.describe Keyboard do
       expect(Keyboard.new.read_input).to eq('LEFT')
     end
 
-    it "return LETTER A imputing key A " do
+    it "return the key character imputing a letter key" do
       allow_any_instance_of(Keyboard).to receive(:get_input).and_return('a')
-      expect(Keyboard.new.read_input).to eq('LETTER A')
+      expect(Keyboard.new.read_input).to eq('a')
     end
   end
 end

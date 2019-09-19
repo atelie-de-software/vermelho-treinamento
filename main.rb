@@ -1,4 +1,4 @@
-require './classes/keyboard'
+require './src/keyboard'
 
 loop do
   command = Keyboard.new.read_input
