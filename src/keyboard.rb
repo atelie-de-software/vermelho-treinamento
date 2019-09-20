@@ -16,9 +16,9 @@ private
     begin
       STDIN.echo = false
       system 'stty -icanon'
-      key = STDIN.gets(1)
+      key = STDIN.getc if key = select([STDIN], [], [], 0.2) && STDIN.getc == "\e" && STDIN.getc == '['
       STDIN.echo = true
-      key.chr
+      key
     ensure
       STDIN.echo = true
     end

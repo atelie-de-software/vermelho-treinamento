@@ -1,6 +1,8 @@
 FROM ruby:2.7-rc
 
 RUN gem install bundle
+RUN apt-get update -qq \
+  && apt-get install libncurses5-dev
 
 WORKDIR /projeto
 COPY Gemfile /projeto/Gemfile
