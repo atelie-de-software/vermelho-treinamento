@@ -1,15 +1,24 @@
-require './src/keyboard'
+require 'dispel'
 
-number = 1
+x = 0
+y = 0
+output = ""
+# draw app and redraw after each keystroke
+Dispel::Screen.open do |screen|
+    Dispel::Keyboard.output timeout: 0.5 do |key|
+      screen.draw output
+      next unless key
+      exit(true) if key == :"Ctrl+c"
 
-loop do
-  system('clear')
-  puts Time.now
-  p number.round(2)
 
-  command = Keyboard.new.read_input
-  number += 1 if command == 'UP'
-  number -= 1 if command == 'DOWN'
-  number += 0.1 if command == 'RIGHT'
-  number -= 0.1 if command == 'LEFT'
+      x += 1 if key == :right
+      x -= 1 if key == :left
+      y += 1 if key == :up
+      y -= 1 if key == :down
+
+      output = "The time is #{Time.now}\n"
+      next if key == :timeout
+      output += "You pressed #{key}\n"
+      output += "x: #{x} y: #{y}\n"
+    end
 end
