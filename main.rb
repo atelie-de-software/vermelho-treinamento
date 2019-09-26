@@ -30,6 +30,7 @@ def graphic_mode(game, position)
       line.each_char.with_index do |c, x|
         Image.new('images/food.png',               x: x * 50, y: y * 50) if c == '*'
         Image.new("images/pacman_#{position}.png", x: x * 50, y: y * 50) if c == 'c'
+        Image.new("images/wall.png",               x: x * 50, y: y * 50) if c == '#'
       end
     end
   end

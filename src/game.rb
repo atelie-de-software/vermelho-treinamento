@@ -5,6 +5,7 @@ class Game
     @screen           = ""
     @pac_position_x   = pac_position_x
     @pac_position_y   = pac_position_y
+    @wall_one         = [1,1]
     @ball_one         = [0,0]
     @ball_one_live    = true
     @ball_two         = [4,4]
@@ -45,6 +46,11 @@ class Game
 
         @ball_one_live = false if @ball_one == [@pac_position_x, @pac_position_y]
         @ball_two_live = false if @ball_two == [@pac_position_x, @pac_position_y]
+
+        if @wall_one == [x,y]
+          @screen += (check_x_boundaries(x) ? "#\n" : "#")
+          next
+        end
 
         if @ball_one == [x,y] && @ball_one_live
           @screen += (check_x_boundaries(x) ? "*\n" : "*")
