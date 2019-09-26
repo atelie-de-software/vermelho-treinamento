@@ -21,8 +21,14 @@ class Game
   end
 
   def move(dx, dy)
-    @pac_position_x = [[@pac_position_x + dx, 0].max, 4].min
-    @pac_position_y = [[@pac_position_y + dy, 0].max, 4].min
+    new_position_x  = @pac_position_x + dx
+    new_position_y  = @pac_position_y + dy
+
+    if ([new_position_x, new_position_y] != @wall_one)
+      @pac_position_x = [[new_position_x, 0].max, 4].min
+      @pac_position_y = [[new_position_y, 0].max, 4].min
+    end
+
     render_screen
   end
 
