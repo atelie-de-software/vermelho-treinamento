@@ -1,4 +1,4 @@
-require './src/jogo.rb'
+require './src/game.rb'
 require 'dispel'
 require 'ruby2d'
 
@@ -6,75 +6,64 @@ require 'ruby2d'
 set width: 250, height: 250
 set background: 'black'
 
-jogo    = Jogo.new
-posicao = 'right'
-
-puts 'Deseja iniciar o modo grafico? s/n'
-resposta = gets[0]
-
-if resposta == 's'
+def graphic_mode(game, position)
   on :key_down do |event|
-    posicao = event.key
+    position = event.key
 
-    case posicao
-      when 'left'
-        jogo.esquerda
-      when 'right'
-        jogo.direita
-      when 'up'
-        jogo.sobe
-      when 'down'
-        jogo.desce
+    case position
+    when 'left'
+      game.left
+    when 'right'
+      game.right
+    when 'up'
+      game.up
+    when 'down'
+      game.down
     end
   end
 
   update do
     clear
-    jogo.tick
+    game.tick
 
-    jogo.tela.split("\n")[0].each_char.with_index { |c, index|
-      Image.new('images/food.png',              x: index * 50, y: 0) if c == '*'
-      Image.new("images/pacman_#{posicao}.png", x: index * 50, y: 0) if c == 'c'
-    }
-
-    jogo.tela.split("\n")[1].each_char.with_index { |c, index|
-      Image.new('images/food.png',              x: index * 50, y: 50) if c == '*'
-      Image.new("images/pacman_#{posicao}.png", x: index * 50, y: 50) if c == 'c'
-    }
-
-    jogo.tela.split("\n")[2].each_char.with_index { |c, index|
-      Image.new('images/food.png',              x: index * 50, y: 100) if c == '*'
-      Image.new("images/pacman_#{posicao}.png", x: index * 50, y: 100) if c == 'c'
-    }
-
-    jogo.tela.split("\n")[3].each_char.with_index { |c, index|
-      Image.new('images/food.png',              x: index * 50, y: 150) if c == '*'
-      Image.new("images/pacman_#{posicao}.png", x: index * 50, y: 150) if c == 'c'
-    }
-
-    jogo.tela.split("\n")[4].each_char.with_index { |c, index|
-      Image.new('images/food.png',              x: index * 50, y: 200) if c == '*'
-      Image.new("images/pacman_#{posicao}.png", x: index * 50, y: 200) if c == 'c'
-    }
+    game.screen.split("\n").each_with_index do |line, y|
+      line.each_char.with_index do |c, x|
+        Image.new('images/food.png',               x: x * 50, y: y * 50) if c == '*'
+        Image.new("images/pacman_#{position}.png", x: x * 50, y: y * 50) if c == 'c'
+      end
+    end
   end
 
   show
+end
 
-else
+def terminal_mode(game, position)
   Dispel::Screen.open do |screen|
     Dispel::Keyboard.output timeout: 0.5 do |key|
-      jogo.tick
-      jogo.esquerda if key == :left
-      jogo.direita  if key == :right
-      jogo.sobe     if key == :up
-      jogo.desce    if key == :down
+      game.tick
+      game.left  if key == :left
+      game.right if key == :right
+      game.up    if key == :up
+      game.down  if key == :down
 
-      screen.draw " PACMAN\n" + jogo.tela
+      screen.draw " RSPECMAN\n" + game.screen
 
       next          unless key
       next          if     key == :timeout
       exit(true)    if     key == :"Ctrl+c"
-
     end
   end
+end
+
+# main
+game     = Game.new
+position = 'right'
+
+puts 'Deseja iniciar o modo grafico? s/n'
+answer = gets[0]
+
+if answer == 's'
+  graphic_mode(game, position)
+else
+  terminal_mode(game, position)
 end
