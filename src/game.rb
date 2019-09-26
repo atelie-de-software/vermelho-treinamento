@@ -13,6 +13,11 @@ class Game
     @ghost            = [4,0]
     @ghost_live       = false
     @tick_counter     = 0
+    @game_over        = false
+  end
+
+  def status
+    @game_over
   end
 
   def screen
@@ -52,30 +57,32 @@ class Game
 
         @ball_one_live = false if @ball_one == [@pac_position_x, @pac_position_y]
         @ball_two_live = false if @ball_two == [@pac_position_x, @pac_position_y]
+        @game_over     = true  if @ball_one_live == false && @ball_two_live == false
 
-        if @wall_one == [x,y]
-          @screen += (check_x_boundaries(x) ? "#\n" : "#")
-          next
+        unless @game_over
+          if @wall_one == [x,y]
+            @screen += (check_x_boundaries(x) ? "#\n" : "#")
+            next
+          end
+
+          if @ball_one == [x,y] && @ball_one_live
+            @screen += (check_x_boundaries(x) ? "*\n" : "*")
+            next
+          end
+
+          if @ball_two == [x,y] && @ball_two_live
+            @screen += (check_x_boundaries(x) ? "*\n" : "*")
+            next
+          end
+
+          @ghost_live = true if @tick_counter == 5
+          if @ghost == [x,y] && @ghost_live
+            @screen += (check_x_boundaries(x) ? "f\n" : "f")
+            next
+          end
+          @screen += " "
+          @screen += "\n" if check_x_boundaries(x)
         end
-
-        if @ball_one == [x,y] && @ball_one_live
-          @screen += (check_x_boundaries(x) ? "*\n" : "*")
-          next
-        end
-
-        if @ball_two == [x,y] && @ball_two_live
-          @screen += (check_x_boundaries(x) ? "*\n" : "*")
-          next
-        end
-
-        @ghost_live = true if @tick_counter == 5
-        if @ghost == [x,y] && @ghost_live
-          @screen += (check_x_boundaries(x) ? "f\n" : "f")
-          next
-        end
-
-        @screen += " "
-        @screen += "\n" if check_x_boundaries(x)
       end
     end
   end

@@ -48,7 +48,14 @@ def terminal_mode(game, position)
       game.up    if key == :up
       game.down  if key == :down
 
-      screen.draw " RSPECMAN\n" + game.screen
+      if game.status
+        Curses.clear
+        screen.draw "+-----------+\n" \
+                    "| GAME OVER |\n" \
+                    "+-----------+"
+      else
+        screen.draw " RSPECMAN\n" + game.screen
+      end
 
       next          unless key
       next          if     key == :timeout
