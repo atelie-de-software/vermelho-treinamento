@@ -46,20 +46,23 @@ class Game
   def right()   move(1, 0)    end
 
   def render_screen
-    @screen = ""
+    @screen = ''
 
     5.times do |y|
       5.times do |x|
-        if [[x,y]].include? [@pac_position_x, @pac_position_y]
-          @screen += (check_x_boundaries(x) ? "c\n" : "c")
-          next
-        end
-
         @ball_one_live = false if @ball_one == [@pac_position_x, @pac_position_y]
         @ball_two_live = false if @ball_two == [@pac_position_x, @pac_position_y]
         @game_over     = true  if @ball_one_live == false && @ball_two_live == false
 
-        unless @game_over
+        if @game_over
+          @screen = 'Vitória!'
+
+        else
+          if [[x,y]].include? [@pac_position_x, @pac_position_y]
+            @screen += (check_x_boundaries(x) ? "c\n" : "c")
+            next
+          end  
+
           if @wall_one == [x,y]
             @screen += (check_x_boundaries(x) ? "#\n" : "#")
             next

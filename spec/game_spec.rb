@@ -245,7 +245,7 @@ describe 'RSpecMan' do
 
       context 'quando for a última bolinha' do
         context 'e estiver em cima' do
-          xit 'apresentar o fim de jogo de vitória' do
+          it 'apresentar o fim de jogo de vitória' do
             2.times { game.down }
             2.times { game.right }
             4.times { game.left }
@@ -256,7 +256,7 @@ describe 'RSpecMan' do
         end
 
         context 'e estiver em baixo' do
-          xit 'apresentar o fim de jogo de vitória' do
+          it 'apresentar o fim de jogo de vitória' do
             2.times { game.up }
             2.times { game.left }
             4.times { game.right }

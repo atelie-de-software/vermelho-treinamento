@@ -28,10 +28,10 @@ def graphic_mode(game, position)
 
     game.screen.split("\n").each_with_index do |line, y|
       line.each_char.with_index do |c, x|
-        Image.new('images/food.png',               x: x * 50, y: y * 50) if c == '*'
-        Image.new("images/pacman_#{position}.png", x: x * 50, y: y * 50) if c == 'c'
-        Image.new("images/wall.png",               x: x * 50, y: y * 50) if c == '#'
-        Image.new("images/ghost.png",              x: x * 50, y: y * 50) if c == 'f'
+        Image.new('images/food.png',                 x: x * 50, y: y * 50) if c == '*'
+        Image.new("images/ghostman-#{position}.png", x: x * 50, y: y * 50) if c == 'c'
+        Image.new("images/wall.png",                 x: x * 50, y: y * 50) if c == '#'
+        Image.new("images/pacman.png",               x: x * 50, y: y * 50) if c == 'f'
       end
     end
   end
@@ -48,15 +48,8 @@ def terminal_mode(game, position)
       game.up    if key == :up
       game.down  if key == :down
 
-      if game.status
-        Curses.clear
-        screen.draw "+-----------+\n" \
-                    "| GAME OVER |\n" \
-                    "+-----------+"
-      else
-        screen.draw " RSPECMAN\n" + game.screen
-      end
-
+      screen.draw " GHOSTMAN\n" + game.screen
+      
       next          unless key
       next          if     key == :timeout
       exit(true)    if     key == :"Ctrl+c"
