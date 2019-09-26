@@ -244,13 +244,26 @@ describe 'RSpecMan' do
       end
 
       context 'quando for a última bolinha' do
-        xit 'apresentar o fim de jogo de vitória' do
-          2.times game.down
-          2.times game.right
-          4.times game.left
-          4.times game.up
+        context 'e estiver em cima' do
+          xit 'apresentar o fim de jogo de vitória' do
+            2.times { game.down }
+            2.times { game.right }
+            4.times { game.left }
+            4.times { game.up }
 
-          expect(game.screen).to eq('Vitória!')
+            expect(game.screen).to eq('Vitória!')
+          end
+        end
+
+        context 'e estiver em baixo' do
+          xit 'apresentar o fim de jogo de vitória' do
+            2.times { game.up }
+            2.times { game.left }
+            4.times { game.right }
+            4.times { game.down }
+
+            expect(game.screen).to eq('Vitória!')
+          end
         end
       end
     end
