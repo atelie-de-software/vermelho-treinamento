@@ -242,6 +242,17 @@ describe 'RSpecMan' do
 
         expect(game.screen).to eq(expected)
       end
+
+      context 'quando for a última bolinha' do
+        xit 'apresentar o fim de jogo de vitória' do
+          2.times game.down
+          2.times game.right
+          4.times game.left
+          4.times game.up
+
+          expect(game.screen).to eq('Vitória!')
+        end
+      end
     end
 
     context 'após 5 ticks' do
