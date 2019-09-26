@@ -7,7 +7,7 @@ describe 'RSpecMan' do
     context 'e não pressionar nenhuma tecla' do
       it 'deve ter o RSpecMan no centro' do
         expected = "*    \n" \
-                   "     \n" \
+                   " #   \n" \
                    "  c  \n" \
                    "     \n" \
                    "    *\n"
@@ -17,7 +17,17 @@ describe 'RSpecMan' do
 
       it 'deve ter bolinhas nas extremidades' do
         expected = "*    \n" \
+                   " #   \n" \
+                   "  c  \n" \
                    "     \n" \
+                   "    *\n"
+
+        expect(game.screen).to eq(expected)
+      end
+
+      it 'deve ter uma parede' do
+        expected = "*    \n" \
+                   " #   \n" \
                    "  c  \n" \
                    "     \n" \
                    "    *\n"
@@ -31,7 +41,7 @@ describe 'RSpecMan' do
         game.right
 
         expected = "*    \n" \
-                   "     \n" \
+                   " #   \n" \
                    "   c \n" \
                    "     \n" \
                    "    *\n"
@@ -45,7 +55,7 @@ describe 'RSpecMan' do
         game.left
 
         expected = "*    \n" \
-                   "     \n" \
+                   " #   \n" \
                    " c   \n" \
                    "     \n" \
                    "    *\n"
@@ -59,7 +69,7 @@ describe 'RSpecMan' do
         game.up
 
         expected = "*    \n" \
-                   "  c  \n" \
+                   " #c  \n" \
                    "     \n" \
                    "     \n" \
                    "    *\n"
@@ -73,7 +83,7 @@ describe 'RSpecMan' do
         game.down
 
         expected = "*    \n" \
-                   "     \n" \
+                   " #   \n" \
                    "     \n" \
                    "  c  \n" \
                    "    *\n"
@@ -90,10 +100,10 @@ describe 'RSpecMan' do
           game.right
 
           expected = "*    \n" \
-          "     \n" \
-          "    c\n" \
-          "     \n" \
-          "    *\n"
+                     " #   \n" \
+                     "    c\n" \
+                     "     \n" \
+                     "    *\n"
 
           expect(game.screen).to eq(expected)
         end
@@ -106,7 +116,7 @@ describe 'RSpecMan' do
           game.left
 
           expected = "*    \n" \
-                     "     \n" \
+                     " #   \n" \
                      "c    \n" \
                      "     \n" \
                      "    *\n"
@@ -122,7 +132,7 @@ describe 'RSpecMan' do
           game.up
 
           expected = "* c  \n" \
-                     "     \n" \
+                     " #   \n" \
                      "     \n" \
                      "     \n" \
                      "    *\n"
@@ -138,7 +148,7 @@ describe 'RSpecMan' do
           game.down
 
           expected = "*    \n" \
-                     "     \n" \
+                     " #   \n" \
                      "     \n" \
                      "     \n" \
                      "  c *\n"
@@ -157,7 +167,7 @@ describe 'RSpecMan' do
         game.up
 
         expected = "*    \n" \
-                   "     \n" \
+                   " #   \n" \
                    "     \n" \
                    "    c\n" \
                    "     \n"
@@ -175,7 +185,7 @@ describe 'RSpecMan' do
         game.tick
 
         expected = "*   f\n" \
-                   "     \n" \
+                   " #   \n" \
                    "  c  \n" \
                    "     \n" \
                    "    *\n"
