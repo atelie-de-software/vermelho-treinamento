@@ -31,6 +31,7 @@ def graphic_mode(game, position)
         Image.new('images/food.png',               x: x * 50, y: y * 50) if c == '*'
         Image.new("images/pacman_#{position}.png", x: x * 50, y: y * 50) if c == 'c'
         Image.new("images/wall.png",               x: x * 50, y: y * 50) if c == '#'
+        Image.new("images/ghost.png",              x: x * 50, y: y * 50) if c == 'f'
       end
     end
   end
