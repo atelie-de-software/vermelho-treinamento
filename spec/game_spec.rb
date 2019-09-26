@@ -129,16 +129,34 @@ describe 'RSpecMan' do
     end
 
     context 'e pressionar para baixo' do
-      it 'o RSpecMan deve andar para baixo' do
-        game.down
+      context 'se não houver parede' do
+        it 'o RSpecMan deve andar para baixo' do
+          game.down
 
-        expected = "*    \n" \
-                   " #   \n" \
-                   "     \n" \
-                   "  c  \n" \
-                   "    *\n"
+          expected = "*    \n" \
+                     " #   \n" \
+                     "     \n" \
+                     "  c  \n" \
+                     "    *\n"
 
-        expect(game.screen).to eq(expected)
+          expect(game.screen).to eq(expected)
+        end
+      end
+
+      context 'se houver parede' do
+        it 'deve permanecer no lugar' do
+          game.up
+          game.up
+          game.left
+          game.down
+          expected = "*c   \n" \
+                     " #   \n" \
+                     "     \n" \
+                     "     \n" \
+                     "    *\n"
+
+          expect(game.screen).to eq(expected)
+        end
       end
     end
 
