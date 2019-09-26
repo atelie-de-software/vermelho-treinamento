@@ -36,9 +36,9 @@ describe 'RSpecMan' do
       end
     end
 
-    context 'e pressionar para a right' do
+    context 'e pressionar para a direita' do
       context 'se não houver parede' do
-        it 'o RSpecMan deve andar para right' do
+        it 'o RSpecMan deve andar para direita' do
           game.right
 
           expected = "*    \n" \
@@ -50,6 +50,7 @@ describe 'RSpecMan' do
           expect(game.screen).to eq(expected)
         end
       end
+
       context 'se houver parede' do
         it 'deve permanecer no lugar' do
           game.left
@@ -67,9 +68,9 @@ describe 'RSpecMan' do
       end
     end
 
-    context 'e pressionar para a left' do
+    context 'e pressionar para a esquerda' do
       context 'se não houver parede' do
-        it 'o RSpecMan deve andar para left' do
+        it 'o RSpecMan deve andar para esquerda' do
           game.left
 
           expected = "*    \n" \
@@ -84,7 +85,6 @@ describe 'RSpecMan' do
 
       context 'se houver parede' do
         it 'deve permanecer no lugar' do
-          game.up
           game.up
           game.left
           expected = "*    \n" \
