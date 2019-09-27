@@ -6,6 +6,10 @@ class Game
     @pac_position_x   = pac_position_x
     @pac_position_y   = pac_position_y
     @wall_one         = [1,1]
+    @wall_two         = [1,2]
+    @wall_three       = [1,3]
+    @wall_four        = [3,1]
+    @wall_five        = [3,3]
     @ball_one         = [0,0]
     @ball_one_live    = true
     @ball_two         = [4,4]
@@ -13,11 +17,8 @@ class Game
     @ghost            = [4,0]
     @ghost_live       = false
     @tick_counter     = 0
+    @win              = false
     @game_over        = false
-  end
-
-  def status
-    @game_over
   end
 
   def screen
@@ -29,7 +30,12 @@ class Game
     new_position_x  = @pac_position_x + dx
     new_position_y  = @pac_position_y + dy
 
-    if ([new_position_x, new_position_y] != @wall_one)
+    if ([new_position_x, new_position_y] != @wall_one &&
+        [new_position_x, new_position_y] != @wall_two &&
+        [new_position_x, new_position_y] != @wall_three &&
+        [new_position_x, new_position_y] != @wall_four &&
+        [new_position_x, new_position_y] != @wall_five
+    )
       @pac_position_x = [[new_position_x, 0].max, 4].min
       @pac_position_y = [[new_position_y, 0].max, 4].min
     end
@@ -38,11 +44,8 @@ class Game
   end
 
   def up()      move(0, -1)   end
-
   def down()    move(0, 1)    end
-
   def left()    move(-1, 0)   end
-
   def right()   move(1, 0)    end
 
   def render_screen
@@ -50,20 +53,23 @@ class Game
 
     5.times do |y|
       5.times do |x|
-        @ball_one_live = false if @ball_one == [@pac_position_x, @pac_position_y]
-        @ball_two_live = false if @ball_two == [@pac_position_x, @pac_position_y]
-        @game_over     = true  if @ball_one_live == false && @ball_two_live == false
+        @ball_one_live = false if @ball_one      == [@pac_position_x, @pac_position_y]
+        @ball_two_live = false if @ball_two      == [@pac_position_x, @pac_position_y]
+        @win           = true  if @ball_one_live == false && @ball_two_live == false
+        @game_over     = true  if @ghost         == [@pac_position_x, @pac_position_y]
 
-        if @game_over
+        if @win
           @screen = 'Vitória!'
 
+        elsif @game_over
+          @screen = 'Game Over!'
         else
           if [[x,y]].include? [@pac_position_x, @pac_position_y]
             @screen += (check_x_boundaries(x) ? "c\n" : "c")
             next
-          end  
+          end
 
-          if @wall_one == [x,y]
+          if @wall_one == [x,y] || @wall_two == [x,y] || @wall_three == [x,y] || @wall_four == [x,y] || @wall_five == [x,y]
             @screen += (check_x_boundaries(x) ? "#\n" : "#")
             next
           end

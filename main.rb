@@ -49,7 +49,7 @@ def terminal_mode(game, position)
       game.down  if key == :down
 
       screen.draw " GHOSTMAN\n" + game.screen
-      
+
       next          unless key
       next          if     key == :timeout
       exit(true)    if     key == :"Ctrl+c"
