@@ -5,9 +5,9 @@ describe 'RSpecMan' do
 
   context 'Ao iniciar um game' do
     context 'e não pressionar nenhuma tecla' do
-      it 'deve ter o RSpecMan no centro' do
+      xit 'deve ter o RSpecMan no centro' do
         expected = "*    \n" \
-                   " #   \n" \
+                   " # # \n" \
                    "  c  \n" \
                    "     \n" \
                    "    *\n"
@@ -15,9 +15,9 @@ describe 'RSpecMan' do
         expect(game.screen).to eq(expected)
       end
 
-      it 'deve ter bolinhas nas extremidades' do
+      xit 'deve ter bolinhas nas extremidades' do
         expected = "*    \n" \
-                   " #   \n" \
+                   " # # \n" \
                    "  c  \n" \
                    "     \n" \
                    "    *\n"
@@ -25,9 +25,9 @@ describe 'RSpecMan' do
         expect(game.screen).to eq(expected)
       end
 
-      it 'deve ter uma parede' do
+      xit 'deve ter uma parede' do
         expected = "*    \n" \
-                   " #   \n" \
+                   " # # \n" \
                    "  c  \n" \
                    "     \n" \
                    "    *\n"
@@ -38,11 +38,11 @@ describe 'RSpecMan' do
 
     context 'e pressionar para a direita' do
       context 'se não houver parede' do
-        it 'o RSpecMan deve andar para direita' do
+        xit 'o RSpecMan deve andar para direita' do
           game.right
 
           expected = "*    \n" \
-                     " #   \n" \
+                     " # # \n" \
                      "   c \n" \
                      "     \n" \
                      "    *\n"
@@ -52,13 +52,13 @@ describe 'RSpecMan' do
       end
 
       context 'se houver parede' do
-        it 'deve permanecer no lugar' do
+        xit 'deve permanecer no lugar' do
           game.left
           game.left
           game.up
           game.right
           expected = "*    \n" \
-                     "c#   \n" \
+                     "c# # \n" \
                      "     \n" \
                      "     \n" \
                      "    *\n"
@@ -70,11 +70,11 @@ describe 'RSpecMan' do
 
     context 'e pressionar para a esquerda' do
       context 'se não houver parede' do
-        it 'o RSpecMan deve andar para esquerda' do
+        xit 'o RSpecMan deve andar para esquerda' do
           game.left
 
           expected = "*    \n" \
-                     " #   \n" \
+                     " # # \n" \
                      " c   \n" \
                      "     \n" \
                      "    *\n"
@@ -84,7 +84,7 @@ describe 'RSpecMan' do
       end
 
       context 'se houver parede' do
-        it 'deve permanecer no lugar' do
+        xit 'deve permanecer no lugar' do
           game.up
           game.left
           expected = "*    \n" \
@@ -100,7 +100,7 @@ describe 'RSpecMan' do
 
     context 'e pressionar para cima' do
       context 'se não houver parede' do
-        it 'o RSpecMan deve andar para cima' do
+        xit 'o RSpecMan deve andar para cima' do
           game.up
 
           expected = "*    \n" \
@@ -114,11 +114,11 @@ describe 'RSpecMan' do
       end
 
       context 'se houver parede' do
-        it 'deve permanecer no lugar' do
+        xit 'deve permanecer no lugar' do
           game.left
           game.up
           expected = "*    \n" \
-                     " #   \n" \
+                     " # # \n" \
                      " c   \n" \
                      "     \n" \
                      "    *\n"
@@ -130,11 +130,11 @@ describe 'RSpecMan' do
 
     context 'e pressionar para baixo' do
       context 'se não houver parede' do
-        it 'o RSpecMan deve andar para baixo' do
+        xit 'o RSpecMan deve andar para baixo' do
           game.down
 
           expected = "*    \n" \
-                     " #   \n" \
+                     " # # \n" \
                      "     \n" \
                      "  c  \n" \
                      "    *\n"
@@ -144,13 +144,13 @@ describe 'RSpecMan' do
       end
 
       context 'se houver parede' do
-        it 'deve permanecer no lugar' do
+        xit 'deve permanecer no lugar' do
           game.up
           game.up
           game.left
           game.down
           expected = "*c   \n" \
-                     " #   \n" \
+                     " # # \n" \
                      "     \n" \
                      "     \n" \
                      "    *\n"
@@ -162,13 +162,13 @@ describe 'RSpecMan' do
 
     context 'e chegar na extremidade' do
       context 'a right' do
-        it 'o RSpecMan deve permanecer parado' do
+        xit 'o RSpecMan deve permanecer parado' do
           game.right
           game.right
           game.right
 
           expected = "*    \n" \
-                     " #   \n" \
+                     " # # \n" \
                      "    c\n" \
                      "     \n" \
                      "    *\n"
@@ -178,13 +178,13 @@ describe 'RSpecMan' do
       end
 
       context 'a left' do
-        it 'o RSpecMan deve permanecer parado' do
+        xit 'o RSpecMan deve permanecer parado' do
           game.left
           game.left
           game.left
 
           expected = "*    \n" \
-                     " #   \n" \
+                     " # # \n" \
                      "c    \n" \
                      "     \n" \
                      "    *\n"
@@ -194,13 +194,13 @@ describe 'RSpecMan' do
       end
 
       context 'superior' do
-        it 'o RSpecMan deve permanecer parado' do
+        xit 'o RSpecMan deve permanecer parado' do
           game.up
           game.up
           game.up
 
           expected = "* c  \n" \
-                     " #   \n" \
+                     " # # \n" \
                      "     \n" \
                      "     \n" \
                      "    *\n"
@@ -210,13 +210,13 @@ describe 'RSpecMan' do
       end
 
       context 'inferior' do
-        it 'o RSpecMan deve permanecer parado' do
+        xit 'o RSpecMan deve permanecer parado' do
           game.down
           game.down
           game.down
 
           expected = "*    \n" \
-                     " #   \n" \
+                     " # # \n" \
                      "     \n" \
                      "     \n" \
                      "  c *\n"
@@ -227,7 +227,7 @@ describe 'RSpecMan' do
     end
 
     context 'e o RSpecMan passar por uma bolinha' do
-      it 'ela deve sumir' do
+      xit 'ela deve sumir' do
         game.down
         game.down
         game.right
@@ -235,7 +235,7 @@ describe 'RSpecMan' do
         game.up
 
         expected = "*    \n" \
-                   " #   \n" \
+                   " # # \n" \
                    "     \n" \
                    "    c\n" \
                    "     \n"
@@ -245,7 +245,7 @@ describe 'RSpecMan' do
 
       context 'quando for a última bolinha' do
         context 'e estiver em cima' do
-          it 'apresentar o fim de jogo de vitória' do
+          xit 'apresentar o fim de jogo de vitória' do
             2.times { game.down }
             2.times { game.right }
             4.times { game.left }
@@ -256,7 +256,7 @@ describe 'RSpecMan' do
         end
 
         context 'e estiver em baixo' do
-          it 'apresentar o fim de jogo de vitória' do
+          xit 'apresentar o fim de jogo de vitória' do
             2.times { game.up }
             2.times { game.left }
             4.times { game.right }
@@ -269,7 +269,7 @@ describe 'RSpecMan' do
     end
 
     context 'deve aparecer um fantasma' do
-      it 'após 5 ticks' do
+      xit 'após 5 ticks' do
         game.tick
         game.tick
         game.tick
@@ -277,7 +277,7 @@ describe 'RSpecMan' do
         game.tick
 
         expected = "*   f\n" \
-                   " #   \n" \
+                   " # # \n" \
                    "  c  \n" \
                    "     \n" \
                    "    *\n"
@@ -297,100 +297,3 @@ describe 'RSpecMan' do
     end
   end
 end
-
-
-
-#
-#   context "Após 5 ticks" do
-#     let!(:game) { Jogo.new }
-#
-#
-#     xit 'Quando o fantasma anda' do
-#       game.tick
-#
-#       xit 'ele deve perseguir o pac man' do
-#         expected = "*  f \n"+
-#                    "     \n"+
-#                    "  c  \n"+
-#                    "     \n"+
-#                    "    *\n"
-#
-#         expect(game.screen).to eq expected
-#
-#         game.tick
-#
-#         expected = "* f  \n"+
-#                    "     \n"+
-#                    "  c  \n"+
-#                    "     \n"+
-#                    "    *\n"
-#
-#         expect(game.screen).to eq expected
-#
-#         game.tick
-#
-#         expected = "*    \n"+
-#                    "  f  \n"+
-#                    "  c  \n"+
-#                    "     \n"+
-#                    "    *\n"
-#
-#         expect(game.screen).to eq expected
-#       end
-#     end
-#   end
-#
-#   context "Quando pac man relar no fantasma" do
-#     xit "Dar game over no game" do
-#       game.up
-#       game.up
-#       game.right
-#
-#       expected = "     \n"+
-#                  " game\n"+
-#                  " over\n"+
-#                  "     \n"+
-#                  "     \n"
-#
-#       expect(game.screen).to eq expected
-#     end
-#   end
-#
-#   xit 'Após 10 ticks deve aparecer a frutinha' do
-#     game.tick
-#     game.tick
-#     game.tick
-#     game.tick
-#     game.tick
-#     game.tick
-#     game.tick
-#     game.tick
-#     game.tick
-#     game.tick
-#
-#     expected = "*   f\n"+
-#                "     \n"+
-#                "  c  \n"+
-#                "     \n"+
-#                "6   *\n"
-#
-#     expect(game.screen).to eq expected
-#   end
-#
-#   context "Quando pac man passar na frutinha" do
-#     xit "Deve sumir com a frutinha e ficar grande" do
-#       game.down
-#       game.down
-#       game.left
-#       game.left
-#       game.up
-#
-#       expected = "*   f\n"+
-#                  "     \n"+
-#                  "     \n"+
-#                  "C    \n"+
-#                  "    *\n"
-#       expect(game.screen).to eq expected
-#     end
-#   end
-# end
