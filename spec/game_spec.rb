@@ -268,8 +268,8 @@ describe 'RSpecMan' do
       end
     end
 
-    context 'após 5 ticks' do
-      it 'deve aparecer um fantasma' do
+    context 'deve aparecer um fantasma' do
+      it 'após 5 ticks' do
         game.tick
         game.tick
         game.tick
@@ -283,6 +283,16 @@ describe 'RSpecMan' do
                    "    *\n"
 
         expect(game.screen).to eq(expected)
+      end
+
+      context 'quando pacman encostar nele' do
+        xit 'apresentar o fim de jogo de derrota' do
+          5.times { game.tick }
+          2.times { game.up }
+          game.right
+
+          expect(game.screen).to eq('Game Over!')
+        end
       end
     end
   end
