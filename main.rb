@@ -25,6 +25,7 @@ def graphic_mode(game, position)
   update do
     clear
     game.tick
+    sleep(0.3)
 
     game.screen.split("\n").each_with_index do |line, y|
       line.each_char.with_index do |c, x|
@@ -32,6 +33,8 @@ def graphic_mode(game, position)
         Image.new("images/ghostman-#{position}.png", x: x * 50, y: y * 50) if c == 'c'
         Image.new("images/wall.png",                 x: x * 50, y: y * 50) if c == '#'
         Image.new("images/pacman.png",               x: x * 50, y: y * 50) if c == 'f'
+        Image.new("images/win.png",                  x: x * 50, y: y * 50) if c == 'Vitória!'
+        Image.new("images/lose.png",                 x: x * 50, y: y * 50) if c == 'Game Over!'
       end
     end
   end

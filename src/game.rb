@@ -49,19 +49,21 @@ class Game
   def right()   move(1, 0)    end
 
   def render_screen
-    @screen = ''
+    @screen    = ''
+
+    @game_over = true if @ghost == [@pac_position_x, @pac_position_y]
+    if @win
+      @screen = 'Vitória!'
+      return
+    end
 
     5.times do |y|
       5.times do |x|
         @ball_one_live = false if @ball_one      == [@pac_position_x, @pac_position_y]
         @ball_two_live = false if @ball_two      == [@pac_position_x, @pac_position_y]
         @win           = true  if @ball_one_live == false && @ball_two_live == false
-        @game_over     = true  if @ghost         == [@pac_position_x, @pac_position_y]
 
-        if @win
-          @screen = 'Vitória!'
-
-        elsif @game_over
+        if @game_over
           @screen = 'Game Over!'
         else
           if [[x,y]].include? [@pac_position_x, @pac_position_y]
