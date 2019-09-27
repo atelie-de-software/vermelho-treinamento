@@ -51,49 +51,49 @@ class Game
   def render_screen
     @screen    = ''
 
-    @game_over = true if @ghost == [@pac_position_x, @pac_position_y]
+    @ball_one_live = false if @ball_one      == [@pac_position_x, @pac_position_y]
+    @ball_two_live = false if @ball_two      == [@pac_position_x, @pac_position_y]
+    @win           = true  if @ball_one_live == false && @ball_two_live == false
+    @game_over     = true if @ghost == [@pac_position_x, @pac_position_y]
+
     if @win
       @screen = 'Vitória!'
-      return
+      return @screen
+    elsif @game_over
+      @screen = 'Game Over!'
+      return @screen
     end
 
     5.times do |y|
       5.times do |x|
-        @ball_one_live = false if @ball_one      == [@pac_position_x, @pac_position_y]
-        @ball_two_live = false if @ball_two      == [@pac_position_x, @pac_position_y]
-        @win           = true  if @ball_one_live == false && @ball_two_live == false
-
-        if @game_over
-          @screen = 'Game Over!'
-        else
-          if [[x,y]].include? [@pac_position_x, @pac_position_y]
-            @screen += (check_x_boundaries(x) ? "c\n" : "c")
-            next
-          end
-
-          if @wall_one == [x,y] || @wall_two == [x,y] || @wall_three == [x,y] || @wall_four == [x,y] || @wall_five == [x,y]
-            @screen += (check_x_boundaries(x) ? "#\n" : "#")
-            next
-          end
-
-          if @ball_one == [x,y] && @ball_one_live
-            @screen += (check_x_boundaries(x) ? "*\n" : "*")
-            next
-          end
-
-          if @ball_two == [x,y] && @ball_two_live
-            @screen += (check_x_boundaries(x) ? "*\n" : "*")
-            next
-          end
-
-          @ghost_live = true if @tick_counter == 5
-          if @ghost == [x,y] && @ghost_live
-            @screen += (check_x_boundaries(x) ? "f\n" : "f")
-            next
-          end
-          @screen += " "
-          @screen += "\n" if check_x_boundaries(x)
+        if [[x,y]].include? [@pac_position_x, @pac_position_y]
+          @screen += (check_x_boundaries(x) ? "c\n" : "c")
+          next
         end
+
+        if @wall_one == [x,y] || @wall_two == [x,y] || @wall_three == [x,y] || @wall_four == [x,y] || @wall_five == [x,y]
+          @screen += (check_x_boundaries(x) ? "#\n" : "#")
+          next
+        end
+
+        if @ball_one == [x,y] && @ball_one_live
+          @screen += (check_x_boundaries(x) ? "*\n" : "*")
+          next
+        end
+
+        if @ball_two == [x,y] && @ball_two_live
+          @screen += (check_x_boundaries(x) ? "*\n" : "*")
+          next
+        end
+
+        @ghost_live = true if @tick_counter == 5
+        if @ghost == [x,y] && @ghost_live
+          @screen += (check_x_boundaries(x) ? "f\n" : "f")
+          next
+        end
+
+        @screen += " "
+        @screen += "\n" if check_x_boundaries(x)
       end
     end
   end

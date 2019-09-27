@@ -51,6 +51,7 @@ def terminal_mode(game, position)
       game.up    if key == :up
       game.down  if key == :down
 
+      Curses.clear
       screen.draw " GHOSTMAN\n" + game.screen
 
       next          unless key
